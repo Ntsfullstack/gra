@@ -310,18 +310,18 @@ export default function GraduationInvite() {
       <div className={`relative z-10 min-h-screen p-4 sm:p-8 transition-all duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
         {/* Top status bar */}
           <div className="max-w-6xl mx-auto mb-8">
-          <div className="bg-black/90 border-2 border-cyan-400 rounded-lg p-4 backdrop-blur-xl font-mono shadow-2xl shadow-cyan-500/50">
-            <div className="flex flex-wrap items-center justify-between gap-4 text-cyan-400">
+          <div className="bg-black/70 border border-cyan-400/30 rounded-xl p-4 backdrop-blur-md font-mono shadow">
+            <div className="flex flex-wrap items-center justify-between gap-4 text-cyan-200">
               <div className="flex items-center gap-2">
-                <Server className="w-5 h-5 animate-pulse" />
-                <span className="text-sm">STATUS: <span className="text-green-400 animate-pulse">ONLINE</span></span>
+                <Server className="w-5 h-5" />
+                <span className="text-sm">STATUS: <span className="text-green-400">ONLINE</span></span>
               </div>
               <div className="flex items-center gap-2">
                 <Terminal className="w-5 h-5" />
-                <span className="text-sm animate-pulse">{hackText}</span>
+                <span className="text-sm">{hackText}</span>
               </div>
               <div className="flex items-center gap-2">
-                <Radio className="w-5 h-5 text-yellow-400 animate-pulse" />
+                <Radio className="w-5 h-5 text-yellow-400" />
                 <span className="text-sm">BROADCASTING: <span className="text-yellow-400">LIVE</span></span>
               </div>
             </div>
@@ -384,16 +384,15 @@ export default function GraduationInvite() {
 
           {/* Main card with 3D effect */}
           <div className="relative mt-12">
-            <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-2xl blur-2xl opacity-75 animate-pulse"></div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-2xl blur-xl opacity-50" style={{animation: 'pulse 3s ease-in-out infinite'}}></div>
-            <div className="relative bg-black border-4 border-cyan-400 rounded-2xl overflow-hidden shadow-2xl" style={{ transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`, transition: 'transform 0.1s linear' }}>
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent" style={{backgroundSize: '100% 200%', animation: 'scan 4s linear infinite'}}></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-transparent" style={{animation: 'sweep 8s linear infinite'}}></div>
-              <div className="absolute inset-0 opacity-5" style={{backgroundImage: 'linear-gradient(rgba(0,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.5) 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
+            <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 blur opacity-70"></div>
+            <div className="relative bg-black/50 border border-cyan-400/30 rounded-2xl overflow-hidden shadow-xl" style={{ transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`, transition: 'transform 0.1s linear' }}>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent" style={{backgroundSize: '100% 200%', animation: 'scan 6s linear infinite'}}></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-purple-500/10 to-transparent" style={{animation: 'sweep 10s linear infinite'}}></div>
+              <div className="absolute inset-0 opacity-[0.04]" style={{backgroundImage: 'linear-gradient(rgba(0,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.4) 1px, transparent 1px)', backgroundSize: '20px 20px'}}></div>
 
               <div className="relative p-8 sm:p-12">
                 {/* Terminal header */}
-                <div className="bg-gradient-to-r from-cyan-900/70 to-purple-900/70 border-2 border-cyan-400/70 rounded-lg p-4 mb-8 backdrop-blur-sm shadow-lg shadow-cyan-500/30">
+                <div className="bg-black/60 border border-cyan-400/30 rounded-lg p-4 mb-8 backdrop-blur-sm shadow">
                   <div className="flex items-center justify-between flex-wrap gap-4">
                     <div className="flex items-center gap-3">
                       <div className="flex gap-2">
@@ -404,7 +403,7 @@ export default function GraduationInvite() {
                       <span className="text-cyan-400 font-mono text-sm">root@graduation:~$</span>
                     </div>
                     <div className="text-pink-400 font-mono text-sm flex items-center gap-2">
-                      <Cpu className="w-5 h-5 animate-spin" style={{animationDuration: '2s'}} />
+                      <Cpu className="w-5 h-5" />
                       <span>INVITATION PROTOCOL v3.0</span>
                     </div>
                   </div>
@@ -435,19 +434,18 @@ export default function GraduationInvite() {
                   ].map((item, index) => (
                     <div 
                       key={index}
-                      className="group relative bg-gradient-to-br from-gray-900 to-black border-2 border-cyan-400/50 rounded-xl p-6 backdrop-blur-sm hover:scale-105 transition-all duration-300 hover:shadow-2xl shadow-lg overflow-hidden"
-                      style={{ boxShadow: `0 0 30px rgba(0, 255, 255, 0.15)` }}
+                      className="group relative bg-black/50 border border-cyan-400/30 rounded-xl p-5 backdrop-blur-md hover:scale-[1.02] transition-all duration-300 shadow overflow-hidden"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-purple-500/20 to-pink-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-purple-500/10 to-pink-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       
                       <div className="relative flex items-start gap-4">
-                        <div className="p-3 bg-gradient-to-br from-cyan-900/70 to-purple-900/70 rounded-lg border-2 border-cyan-400 group-hover:animate-pulse shadow-lg">
+                        <div className="p-2.5 bg-black/40 rounded-lg border border-cyan-400/30">
                           <item.icon className="w-7 h-7 text-cyan-400" />
                         </div>
                         <div className="flex-1">
-                          <p className="text-cyan-400 font-mono text-xs mb-1 tracking-widest">{item.label}</p>
-                          <p className="text-white font-bold text-xl leading-tight">{item.value}</p>
-                          {item.sub && <p className="text-gray-400 text-sm mt-2">{item.sub}</p>}
+                          <p className="text-cyan-300 font-mono text-xs mb-1 tracking-widest">{item.label}</p>
+                          <p className="text-white font-semibold text-lg leading-tight">{item.value}</p>
+                          {item.sub && <p className="text-cyan-200/70 text-sm mt-2">{item.sub}</p>}
                         </div>
                       </div>
                     </div>
@@ -455,20 +453,20 @@ export default function GraduationInvite() {
                 </div>
 
                 {/* RSVP Section */}
-                <div className="relative bg-gradient-to-r from-cyan-900/30 via-purple-900/30 to-pink-900/30 border-4 border-cyan-400/70 rounded-xl p-8 backdrop-blur-sm shadow-2xl shadow-cyan-500/30">
+                <div className="relative bg-black/60 border border-cyan-400/30 rounded-xl p-8 backdrop-blur-md shadow">
                   <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-black px-8 py-3 border-4 border-cyan-400 rounded-full shadow-lg shadow-cyan-500/50 animate-pulse">
-                      <span className="text-cyan-400 font-mono font-bold tracking-widest text-lg">RSVP REQUIRED</span>
+                    <div className="bg-black px-8 py-3 border border-cyan-400/30 rounded-full shadow">
+                      <span className="text-cyan-300 font-mono font-bold tracking-widest text-lg">RSVP REQUIRED</span>
                     </div>
                   </div>
                   
                   <div className="mt-6 flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <div className="flex items-center gap-3 bg-gradient-to-r from-purple-900/70 to-black px-8 py-4 rounded-lg border-2 border-purple-400/70 hover:border-purple-400 transition-all shadow-lg shadow-purple-500/30 hover:scale-105">
-                      <Phone className="w-6 h-6 text-purple-400 animate-pulse" />
+                    <div className="flex items-center gap-3 bg-black/50 px-8 py-4 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all shadow hover:scale-[1.02]">
+                      <Phone className="w-6 h-6 text-purple-400" />
                       <span className="text-white font-mono font-bold text-lg">0329442505</span>
                     </div>
-                    <div className="flex items-center gap-3 bg-gradient-to-r from-pink-900/70 to-black px-8 py-4 rounded-lg border-2 border-pink-400/70 hover:border-pink-400 transition-all shadow-lg shadow-pink-500/30 hover:scale-105">
-                      <Mail className="w-6 h-6 text-pink-400 animate-pulse" />
+                    <div className="flex items-center gap-3 bg-black/50 px-8 py-4 rounded-lg border border-pink-400/30 hover:border-pink-400/50 transition-all shadow hover:scale-[1.02]">
+                      <Mail className="w-6 h-6 text-pink-400" />
                       <span className="text-white font-mono font-bold text-lg">nts.dev03@gmail.com</span>
                     </div>
                   </div>
@@ -494,15 +492,15 @@ export default function GraduationInvite() {
           </div>
 
           {/* Bottom status bar */}
-          <div className="mt-8 bg-black/90 border-2 border-cyan-400 rounded-lg p-4 backdrop-blur-xl shadow-2xl shadow-cyan-500/50">
-            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono">
-              <div className="flex items-center gap-2 text-green-400 animate-pulse">
+          <div className="mt-8 bg-black/70 border border-cyan-400/30 rounded-lg p-4 backdrop-blur-md shadow">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-cyan-200">
+              <div className="flex items-center gap-2 text-green-400">
                 <div className="w-2 h-2 rounded-full bg-green-400"></div>
                 SYSTEM ONLINE
               </div>
-              <div className="text-cyan-400">ENCRYPTION: AES-256</div>
-              <div className="text-purple-400">PROTOCOL: HTTPS</div>
-              <div className="flex items-center gap-2 text-pink-400 animate-pulse">
+              <div className="text-cyan-300">ENCRYPTION: AES-256</div>
+              <div className="text-purple-300">PROTOCOL: HTTPS</div>
+              <div className="flex items-center gap-2 text-pink-300">
                 <div className="w-2 h-2 rounded-full bg-pink-400"></div>
                 STATUS: INVITATION SENT
               </div>
