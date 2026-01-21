@@ -434,18 +434,24 @@ export default function GraduationInvite() {
                   ].map((item, index) => (
                     <div 
                       key={index}
-                      className="group relative bg-black/50 border border-cyan-400/30 rounded-xl p-5 backdrop-blur-md hover:scale-[1.02] transition-all duration-300 shadow overflow-hidden"
+                      className="group relative bg-black/70 border border-cyan-400/40 rounded-xl overflow-hidden backdrop-blur-md hover:scale-[1.02] transition-all duration-300 shadow"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-purple-500/10 to-pink-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
-                      <div className="relative flex items-start gap-4">
-                        <div className="p-2.5 bg-black/40 rounded-lg border border-cyan-400/30">
-                          <item.icon className="w-7 h-7 text-cyan-400" />
+                      <div className="flex items-center justify-between px-3 py-2 border-b border-white/10">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                          <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
+                          <span className="w-2 h-2 rounded-full bg-green-500"></span>
                         </div>
-                        <div className="flex-1">
-                          <p className="text-cyan-300 font-mono text-xs mb-1 tracking-widest">{item.label}</p>
-                          <p className="text-white font-semibold text-lg leading-tight">{item.value}</p>
-                          {item.sub && <p className="text-cyan-200/70 text-sm mt-2">{item.sub}</p>}
+                        <div className="font-mono text-xs text-cyan-300">{item.label}</div>
+                      </div>
+                      <div className="p-4 font-mono text-sm text-cyan-300">
+                        <div className="flex items-start gap-2">
+                          <item.icon className="w-5 h-5 text-cyan-400" />
+                          <div className="flex-1">
+                            <div><span className="text-cyan-400">{'>'} {item.label}:</span> <span className="text-white">{item.value}</span></div>
+                            {item.sub && <div><span className="text-cyan-400">{'>'} addr:</span> <span className="text-cyan-200/80">{item.sub}</span></div>}
+                            <div className="mt-1 text-cyan-400"><span>root@sys:</span> <span className="caret">_</span></div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -453,22 +459,27 @@ export default function GraduationInvite() {
                 </div>
 
                 {/* RSVP Section */}
-                <div className="relative bg-black/60 border border-cyan-400/30 rounded-xl p-8 backdrop-blur-md shadow">
-                  <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
-                    <div className="bg-black px-8 py-3 border border-cyan-400/30 rounded-full shadow">
-                      <span className="text-cyan-300 font-mono font-bold tracking-widest text-lg">RSVP REQUIRED</span>
+                <div className="relative bg-black/70 border border-cyan-400/40 rounded-xl overflow-hidden backdrop-blur-md shadow">
+                  <div className="flex items-center justify-between px-3 py-2 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-red-500"></span>
+                      <span className="w-2 h-2 rounded-full bg-yellow-500"></span>
+                      <span className="w-2 h-2 rounded-full bg-green-500"></span>
                     </div>
+                    <div className="font-mono text-xs text-cyan-300">RSVP</div>
                   </div>
-                  
-                  <div className="mt-6 flex flex-col sm:flex-row gap-6 justify-center items-center">
-                    <div className="flex items-center gap-3 bg-black/50 px-8 py-4 rounded-lg border border-purple-400/30 hover:border-purple-400/50 transition-all shadow hover:scale-[1.02]">
-                      <Phone className="w-6 h-6 text-purple-400" />
-                      <span className="text-white font-mono font-bold text-lg">0329442505</span>
+                  <div className="p-6 font-mono text-sm text-cyan-300 space-y-2">
+                    <div className="flex items-center gap-2">
+                      <Phone className="w-5 h-5 text-purple-400" />
+                      <span>{'>'} dial 0329442505</span>
+                      <span className="text-green-400 ml-auto">[OK]</span>
                     </div>
-                    <div className="flex items-center gap-3 bg-black/50 px-8 py-4 rounded-lg border border-pink-400/30 hover:border-pink-400/50 transition-all shadow hover:scale-[1.02]">
-                      <Mail className="w-6 h-6 text-pink-400" />
-                      <span className="text-white font-mono font-bold text-lg">nts.dev03@gmail.com</span>
+                    <div className="flex items-center gap-2">
+                      <Mail className="w-5 h-5 text-pink-400" />
+                      <span>{'>'} mail nts.dev03@gmail.com</span>
+                      <span className="text-green-400 ml-auto">[OK]</span>
                     </div>
+                    <div className="text-cyan-400"><span>root@rsvp:</span> <span className="caret">_</span></div>
                   </div>
                 </div>
 
@@ -582,6 +593,8 @@ export default function GraduationInvite() {
             transform: translate(0);
           }
         }
+        .caret { animation: blink 1s step-start infinite }
+        @keyframes blink { 50% { opacity: 0 } }
         @keyframes loader {
           0% { width: 0% }
           50% { width: 60% }
