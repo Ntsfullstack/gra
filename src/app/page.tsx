@@ -12,7 +12,23 @@ export default function GraduationInvite() {
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [glitchActive, setGlitchActive] = useState(false);
   const [ripples, setRipples] = useState<Ripple[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [stepIndex, setStepIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  type BootStep = { text: string; status: 'ok' | 'warn' | 'info' };
+  const bootSteps: BootStep[] = [
+    { text: 'Initializing kernel...', status: 'info' },
+    { text: 'Mounting file systems...', status: 'ok' },
+    { text: 'Starting network services...', status: 'ok' },
+    { text: 'Entropy low, reseeding RNG...', status: 'warn' },
+    { text: 'Loading graphics driver...', status: 'ok' },
+    { text: 'Calibrating sensors...', status: 'info' },
+    { text: 'Starting matrix renderer...', status: 'ok' },
+    { text: 'Decrypting invitation payload...', status: 'ok' },
+    { text: 'Verifying RSVP channel...', status: 'warn' },
+    { text: 'Boot sequence complete', status: 'ok' }
+  ];
 
   // Countdown timer
   useEffect(() => {
@@ -116,6 +132,27 @@ export default function GraduationInvite() {
   }, []);
 
   useEffect(() => {
+    const t = setTimeout(() => setLoading(false), 1600);
+    return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    if (!loading) return;
+    const interval = setInterval(() => {
+      setStepIndex(prev => {
+        const next = Math.min(prev + 1, bootSteps.length);
+        setProgress(Math.floor((next / bootSteps.length) * 100));
+        if (next === bootSteps.length) {
+          clearInterval(interval);
+          setTimeout(() => setLoading(false), 600);
+        }
+        return next;
+      });
+    }, 180);
+    return () => clearInterval(interval);
+  }, [loading]);
+
+  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
@@ -154,6 +191,39 @@ export default function GraduationInvite() {
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
+      {loading && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black">
+          <div className="bg-black border-2 border-cyan-400 rounded-xl p-6 sm:p-8 shadow-2xl shadow-cyan-500/50 w-[90%] max-w-xl">
+            <div className="flex items-center gap-2 justify-center text-cyan-400 font-mono text-sm mb-4">
+              <Terminal className="w-5 h-5 animate-pulse" />
+              <span>BOOTING SYSTEM</span>
+            </div>
+            <div className="bg-gray-900/80 border border-cyan-400/50 rounded p-4 font-mono text-xs text-cyan-300 h-40 overflow-hidden">
+              <div className="h-full overflow-y-hidden">
+              {Array.from({ length: stepIndex }).map((_, i) => {
+                const s = bootSteps[i];
+                const label =
+                  s.status === 'ok' ? '[OK]' : s.status === 'warn' ? '[WARN]' : '[INFO]';
+                const color =
+                  s.status === 'ok' ? 'text-green-400' : s.status === 'warn' ? 'text-yellow-400' : 'text-cyan-400';
+                return (
+                  <div key={i} className="flex items-center gap-2">
+                    <span className={color}>{label}</span>
+                    <span>{s.text}</span>
+                  </div>
+                );
+              })}
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="relative h-2 w-full bg-gray-900 rounded overflow-hidden">
+                <div className="h-2 bg-cyan-400 rounded" style={{ width: `${progress}%`, transition: 'width 0.18s linear' }} />
+              </div>
+              <div className="mt-2 text-center text-cyan-400 font-mono text-xs">{progress}%</div>
+            </div>
+          </div>
+        </div>
+      )}
       {/* Matrix canvas background */}
       <canvas 
         ref={canvasRef}
@@ -530,6 +600,11 @@ export default function GraduationInvite() {
           100% {
             transform: translate(0);
           }
+        }
+        @keyframes loader {
+          0% { width: 0% }
+          50% { width: 60% }
+          100% { width: 100% }
         }
       `}</style>
     </div>
